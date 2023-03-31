@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../pages/home/HomePage.vue";
-import AboutView from "@/pages/about/AboutPage.vue";
+import HomeView from "../pages/index/views/HomeView.vue";
+import AboutView from "@/pages/index/views/AboutView.vue";
 import LayoutDefault from "@/layouts/LayoutDefault.vue";
 
 Vue.use(VueRouter);
