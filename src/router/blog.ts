@@ -7,7 +7,6 @@ import LayoutDefault from "@/layouts/LayoutDefault.vue";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  // mode: "history",
   base: import.meta.env.BASE_URL,
   routes: [
     {
