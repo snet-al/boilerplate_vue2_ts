@@ -1,3 +1,5 @@
 // user types
 
-export {};
+export interface User {
+    private name: string;
+};
