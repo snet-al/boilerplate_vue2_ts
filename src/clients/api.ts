@@ -1,5 +1,5 @@
 import axios from "axios";
-import eventBus from "@/utils/eventBus";
+import eventBus from "@/plugins/eventBus";
 
 export default (axiosOptions: any = {}, withoutAuthorization: any = false) => {
   const defaultOptions = {
