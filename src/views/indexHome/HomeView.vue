@@ -1,26 +1,26 @@
 <script setup lang="ts">
-import WelcomeItem from "./WelcomeItem.vue";
-import DocumentationIcon from "./icons/IconDocumentation.vue";
-import ToolingIcon from "./icons/IconTooling.vue";
-import EcosystemIcon from "./icons/IconEcosystem.vue";
-import CommunityIcon from "./icons/IconCommunity.vue";
-import SupportIcon from "./icons/IconSupport.vue";
+import ItemsList from "./ItemsList.vue";
+import DocumentationIcon from "@/components/icons/IconDocumentation.vue";
+import ToolingIcon from "@/components/icons/IconTooling.vue";
+import EcosystemIcon from "@/components/icons/IconEcosystem.vue";
+import CommunityIcon from "@/components/icons/IconCommunity.vue";
+import SupportIcon from "@/components/icons/IconSupport.vue";
 </script>
 
 <template>
-  <div>
-    <WelcomeItem>
+  <div style="margin-left: 20px">
+    <ItemsList>
       <template #icon>
         <DocumentationIcon />
       </template>
-      <template #heading>Documentation</template>
+      <template #heading>Official Site</template>
 
       Vue’s
-      <a target="_blank" href="https://v2.vuejs.org/">official documentation</a>
+      <a target="_blank" href="https://v2.vuejs.org/">official site</a>
       provides you with all information you need to get started.
-    </WelcomeItem>
+    </ItemsList>
 
-    <WelcomeItem>
+    <ItemsList>
       <template #icon>
         <ToolingIcon />
       </template>
@@ -42,9 +42,9 @@ import SupportIcon from "./icons/IconSupport.vue";
       <br />
 
       More instructions are available in <code>README.md</code>.
-    </WelcomeItem>
+    </ItemsList>
 
-    <WelcomeItem>
+    <ItemsList>
       <template #icon>
         <EcosystemIcon />
       </template>
@@ -63,9 +63,9 @@ import SupportIcon from "./icons/IconSupport.vue";
         >Awesome Vue</a
       >
       a visit.
-    </WelcomeItem>
+    </ItemsList>
 
-    <WelcomeItem>
+    <ItemsList>
       <template #icon>
         <CommunityIcon />
       </template>
@@ -79,13 +79,13 @@ import SupportIcon from "./icons/IconSupport.vue";
         href="https://stackoverflow.com/questions/tagged/vue.js"
         >StackOverflow</a
       >. You should also subscribe to
-      <a target="_blank" href="https://news.vuejs.org">our mailing list</a> and
-      follow the official
+      <a target="_blank" href="https://news.vuejs.org">our mailing list</a>
+      and follow the official
       <a target="_blank" href="https://twitter.com/vuejs">@vuejs</a>
       twitter account for latest news in the Vue world.
-    </WelcomeItem>
+    </ItemsList>
 
-    <WelcomeItem>
+    <ItemsList>
       <template #icon>
         <SupportIcon />
       </template>
@@ -95,6 +95,6 @@ import SupportIcon from "./icons/IconSupport.vue";
       sustainability. You can help us by
       <a target="_blank" href="https://vuejs.org/sponsor/">becoming a sponsor</a
       >.
-    </WelcomeItem>
+    </ItemsList>
   </div>
 </template>

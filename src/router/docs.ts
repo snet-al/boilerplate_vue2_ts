@@ -1,16 +1,16 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/indexHome/HomeView.vue";
-import IndexDefault from "@/layouts/IndexDefault.vue";
+import HomeView from "../views/docsHome/HomeView.vue";
+import LayoutDefault from "@/layouts/DocsDefault.vue";
 
 Vue.use(VueRouter);
 
-const indexRouter = new VueRouter({
+const docsRouter = new VueRouter({
   base: import.meta.env.BASE_URL,
   routes: [
     {
       path: "/",
-      component: IndexDefault,
+      component: LayoutDefault,
       children: [
         {
           path: "/",
@@ -21,4 +21,4 @@ const indexRouter = new VueRouter({
   ],
 });
 
-export default indexRouter;
+export default docsRouter;

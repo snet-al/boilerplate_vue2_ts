@@ -1,6 +1,6 @@
 import "@/plugins/globals";
 import api from "@/clients/api";
-import eventBus from "@/utils/eventBus";
+import eventBus from "@/plugins/eventBus";
 
 export class ClientModel {
   id = 0;
