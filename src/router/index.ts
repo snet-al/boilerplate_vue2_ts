@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/indexHome/HomeView.vue";
+import HomeView from "../views/IndexPage/HomeView.vue";
+import ItemListView from "../views/IndexPage/ItemListView.vue";
 import IndexDefault from "@/layouts/IndexDefault.vue";
 
 Vue.use(VueRouter);
@@ -15,6 +16,10 @@ const indexRouter = new VueRouter({
         {
           path: "/",
           component: HomeView,
+        },
+        {
+          path: "/list",
+          component: ItemListView,
         },
       ],
     },
