@@ -3,7 +3,7 @@ import eventBus from "@/plugins/eventBus";
 
 export default (axiosOptions: any = {}, withoutAuthorization: any = false) => {
   const defaultOptions = {
-    baseURL: process.env.VUE_APP_BASE_URL + `/api`,
+    baseURL: import.meta.env.VITE_BASE_URL + `/api`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -12,8 +12,8 @@ export default (axiosOptions: any = {}, withoutAuthorization: any = false) => {
     },
   };
 
-  if (process.env.VUE_APP_SECTOR_ID !== "") {
-    defaultOptions.headers["Sector-id"] = process.env.VUE_APP_SECTOR_ID ?? "";
+  if (import.meta.env.VITE_SECTOR_ID !== "") {
+    defaultOptions.headers["Sector-id"] = import.meta.env.VITE_SECTOR_ID ?? "";
   }
 
   const accessToken = "";
