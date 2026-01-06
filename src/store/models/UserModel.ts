@@ -1,5 +1,4 @@
-import "@/plugins/globals";
-import api from "@/clients/api";
+import api from "@/libs/http/api";
 import eventBus from "@/plugins/eventBus";
 
 export class ClientModel {
@@ -14,7 +13,7 @@ export class ClientModel {
       return;
     }
     const translatorSecondObj: any = {};
-    if (!process.env.VUE_APP_MODELS || skipTranslation) {
+    if (!import.meta.env.VITE_MODELS || skipTranslation) {
       return Object.assign(this, data);
     }
     Object.keys(translatorSecondObj).forEach((localFieldName) => {

@@ -1,6 +1,6 @@
 export default {};
 
-// import api from "@/clients/api";
+// import api from "@/libs/http/api";
 // import { UserModel } from "@/store/models/UserModel";
 //
 // export class UserStore extends Store<UserModel> {

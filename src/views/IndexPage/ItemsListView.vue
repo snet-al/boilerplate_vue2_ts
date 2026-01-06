@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
+  name: "ItemsListView",
+});
+</script>
 
 <template>
   <div class="item">

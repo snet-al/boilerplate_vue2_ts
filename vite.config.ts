@@ -1,5 +1,4 @@
 import { fileURLToPath, URL } from "node:url";
-import { resolve } from "path";
 import { defineConfig } from "vite";
 import legacy from "@vitejs/plugin-legacy";
 import vue2 from "@vitejs/plugin-vue2";
@@ -15,14 +14,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
-  },
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, "index.html"),
-        docs: resolve(__dirname, "docs.html"),
-      },
     },
   },
 });
