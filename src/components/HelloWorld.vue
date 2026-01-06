@@ -1,10 +1,13 @@
-<script setup lang="ts">
-import { PropType } from 'vue';
+<script lang="ts">
+import Vue from 'vue';
 
-defineProps({
-  msg: {
-    type: String as PropType<string>,
-    required: true
+export default Vue.extend({
+  name: 'HelloWorld',
+  props: {
+    msg: {
+      type: String,
+      required: true
+    }
   }
 });
 </script>

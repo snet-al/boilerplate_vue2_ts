@@ -6,6 +6,8 @@ This project is a Vue 2 boilerplate with TypeScript support, built using Vite an
 
 This boilerplate uses `@vitejs/plugin-vue2` to enable Vue 2 support in Vite. While Vite is primarily designed for Vue 3, this plugin provides full compatibility for Vue 2 projects, allowing you to benefit from Vite's fast development server and optimized build process.
 
+This is a **Single Page Application (SPA)** with client-side routing.
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -49,22 +51,23 @@ We have included in the boilerplate Vuetify as the default UI framework, but thi
 
 To help in the organization of the code we have chosen some of the best practices and tried to implement them in some examples.
 
-* Structure of the code is based on HTML5 principles which state that components should be semantic. So we have organized the components in three levels:
-  * **pages**: Entry point components for different apps/pages (multi-page application setup). Each page has an `index.ts` that bootstraps a Vue instance and mounts the page component. Page components are simple wrappers with `<router-view />` that serve as the root for each app.
-  * **components**: Presentational, reusable components that are web-component-like. They don't have to know about the data in the app, they should only get the data through props.
-  * **views**: Route-level components that are mapped to child routes in the router. These components are rendered inside layouts and contain the actual page content. They may handle data fetching, state management, and business logic, communicating with store collections/models, services, etc.
+* Structure of the code is based on HTML5 principles which state that components should be semantic. So we have organized the components in two levels:
+  * **components**: Presentational, reusable components that are web-component-like. They don't have to know about the data in the app, they should only get the data through props. Files should use **CamelCase** naming convention (e.g., `MyButton.vue`, `UserCard.vue`).
+  * **views**: Route-level components that simulate pages (similar to React pages). These components are rendered inside layouts and contain the actual page content. They may handle data fetching, state management, and business logic, communicating with store collections/models, services, etc.
 
 ### Folder Structure
 
 ```
 src/
-├── components/     # Presentational, reusable components (prop-driven)
-├── pages/          # Entry point components for multi-page apps (bootstraps Vue instances)
-├── views/          # Route-level components with data and business logic
+├── main.ts         # Application entry point
+├── App.vue         # Root component
+├── components/     # Presentational, reusable components (prop-driven, CamelCase naming)
+├── views/          # Route-level components that simulate pages (like React pages)
 ├── layouts/        # Layout components that wrap views
 ├── services/       # Service classes for API calls and business logic
 ├── store/          # Store collections and models for state management
-├── clients/        # API client configurations (e.g., Axios setup)
+├── libs/           # Shared libraries and utilities
+│   └── http/       # HTTP client configurations (e.g., Axios setup)
 ├── router/         # Vue Router configuration files
 ├── types/          # TypeScript type definitions
 ├── plugins/        # Vue plugins and extensions (e.g., Vuetify, EventBus)
@@ -72,14 +75,18 @@ src/
 └── styles/         # Global styles, SCSS variables, and theme configurations
 ```
 
+### Entry files:
+
+* **main.ts**: Application entry point that bootstraps Vue with router, Vuetify, and global styles.
+* **App.vue**: Root component that renders `<router-view />` for client-side routing.
+
 ### Additional folders:
 
-* **pages**: Contains entry point components for multi-page applications. Each page bootstraps a Vue instance and serves as the root component for a separate HTML page (e.g., `index.html`, `docs.html`).
 * **layouts**: Contains layout components that wrap views and provide consistent structure (navigation, headers, footers).
 * **services**: Contains service classes for API calls and business logic.
 * **store**: Contains store collections and models for state management and data handling.
 * **types**: Contains TypeScript type definitions for better type safety.
-* **clients**: Contains API client configurations (e.g., Axios setup).
+* **libs/http**: Contains HTTP client configurations (e.g., Axios setup).
 * **plugins**: Contains Vue plugins and extensions (e.g., Vuetify, EventBus).
 * **mixins**: Contains reusable Vue mixins.
 * **router**: Contains Vue Router configuration files.
@@ -87,12 +94,13 @@ src/
 
 ## Rules when editing folders
 
-### `src/pages`
+### `src/components`
 
-- **Entry point only**: pages are simple root components that bootstrap Vue instances for multi-page applications.
-- **Minimal logic**: page components should only contain `<router-view />` and minimal setup (plugins, global styles).
-- **Bootstrap in index.ts**: each page folder should have an `index.ts` that creates and mounts the Vue instance.
-- **One page per HTML**: each page corresponds to a separate HTML entry point (e.g., `index.html`, `docs.html`).
+- **Presentational only**: components should be purely presentational and receive data through props.
+- **CamelCase naming**: all component files must use CamelCase naming convention (e.g., `MyButton.vue`, `UserCard.vue`).
+- **Reusable**: design components to be reusable across the application.
+- **No business logic**: avoid data fetching or state management; delegate to parent views.
+- **Props-driven**: use props for data input and emit events for output.
 
 ### `src/views`
 
@@ -112,7 +120,7 @@ src/
 ### `src/services`
 
 - **Single responsibility**: each service should handle one domain or resource (e.g., `UserService`, `ProductService`).
-- **Use API client**: always use the configured API client from `src/clients` instead of direct HTTP calls.
+- **Use HTTP client**: always use the configured HTTP client from `src/libs/http` instead of direct HTTP calls.
 - **Return typed data**: all service methods should return properly typed responses.
 - **Error handling**: implement consistent error handling across all service methods.
 - **Request cancellation**: support aborting requests when components are destroyed (e.g., using AbortController with Axios).
@@ -133,9 +141,9 @@ src/
 - **Use interfaces**: prefer interfaces over types for object shapes to allow declaration merging.
 - **Document complex types**: add JSDoc comments for complex type definitions.
 
-### `src/clients`
+### `src/libs/http`
 
-- **Centralized configuration**: keep all API client setup and configuration in this folder.
+- **Centralized configuration**: keep all HTTP client setup and configuration in this folder.
 - **Factory function**: export a factory function that creates configured axios instances.
 - **Default options**: set default base URL, headers, and authentication in the factory.
 - **Type-safe**: ensure the client returns properly typed responses.
@@ -183,29 +191,6 @@ VITE_MODELS=true
 ```
 
 > **Note**: Vite uses the `VITE_` prefix for environment variables. Access them via `import.meta.env.VITE_*` in your code.
-
-## Browser Support
-
-This boilerplate targets modern browsers. The build includes legacy browser support via `@vitejs/plugin-legacy`, which provides polyfills and transpilation for older browsers including IE11.
-
-If you need to adjust browser support, modify the `targets` configuration in `vite.config.ts`.
-
-## Recommended IDE Setup
-
-For Vue 2 projects, you can use either **Vetur** or **Volar** (in Vue 2 / legacy mode). If using Volar, disable Vetur to avoid conflicts.
-
-**Recommended**: [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
 ## Project Setup
 

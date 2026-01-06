@@ -1,11 +1,12 @@
 import Vue from "vue";
-import App from "@/pages/index/IndexPage.vue";
+import App from "@/App.vue";
 import vuetify from "@/plugins/vuetify";
-import indexRouter from "../../router/index";
+import router from "@/router";
 import "@/styles/theme.scss";
 
 new Vue({
-  router: indexRouter,
+  router,
   vuetify,
   render: (h) => h(App),
 }).$mount("#app");
+

@@ -4,8 +4,8 @@
       <div class="wrapper">
         <HelloWorld msg="Vue Boilerplate" />
         <nav>
-          <a href="/"> Index </a>
-          <a href="/docs.html"> Docs </a>
+          <router-link to="/"> Index </router-link>
+          <router-link to="/docs"> Docs </router-link>
         </nav>
       </div>
     </header>
@@ -13,6 +13,14 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import Vue from "vue";
 import HelloWorld from "@/components/HelloWorld.vue";
+
+export default Vue.extend({
+  name: "DocsDefault",
+  components: {
+    HelloWorld,
+  },
+});
 </script>

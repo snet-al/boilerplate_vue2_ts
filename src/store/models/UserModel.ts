@@ -1,4 +1,4 @@
-import api from "@/clients/api";
+import api from "@/libs/http/api";
 import eventBus from "@/plugins/eventBus";
 
 export class ClientModel {

@@ -1,4 +1,5 @@
-<script setup lang="ts">
+<script lang="ts">
+import Vue from "vue";
 import ItemsList from "./ItemsListView.vue";
 import DocumentationIcon from "@/components/icons/IconDocumentation.vue";
 import ToolingIcon from "@/components/icons/IconTooling.vue";
@@ -6,6 +7,17 @@ import EcosystemIcon from "@/components/icons/IconEcosystem.vue";
 import CommunityIcon from "@/components/icons/IconCommunity.vue";
 import SupportIcon from "@/components/icons/IconSupport.vue";
 
+export default Vue.extend({
+  name: "HomeView",
+  components: {
+    ItemsList,
+    DocumentationIcon,
+    ToolingIcon,
+    EcosystemIcon,
+    CommunityIcon,
+    SupportIcon,
+  },
+});
 </script>
 
 <template>
